@@ -1,6 +1,6 @@
 {
     "name": "max/test-git",
-    "version": "v1.0.7",
+    "version": "v1.0.8",
     "require": {},
     "scripts": {
         "post-install-cmd": "cghooks add --ignore-lock",
@@ -9,6 +9,9 @@
     "extra": {
         "hooks": {
             "pre-commit": [
+                "php bin/index.php"
+            ],
+            "pre-merge": [
                 "php bin/index.php"
             ]
         }

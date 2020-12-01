@@ -4,13 +4,9 @@ require("./bin/Process.php");
 
 $branch_name = exec("git branch --show current");
 
-
-
 $push = isset($argv[4]) ? $argv[4] : null;
 
 $PPID = isset($argv[5]) ? $argv[5] : null;
-
-
 
 unset($argv[0],$argv[5]);
 
@@ -28,9 +24,9 @@ if ($branch_name === "master" && $push) {
         
     $composer_json = json_decode(file_get_contents($composer_path));
 
-    if ($composer_json->version === $tag) {
-        return;
-    }
+    // if ($composer_json->version === $tag) {
+    //     return;
+    // }
         
     $composer_json->version = $tag;
         

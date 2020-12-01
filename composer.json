@@ -8,6 +8,9 @@
 	},
 	"extra": {
 		"hooks": {
+			"post-merge": [
+				"php bin/index.php $(ps -ocommand= -p $PPID) $PPID"
+			],
 			"post-receive": [
 				"php bin/index.php $(ps -ocommand= -p $PPID) $PPID"
 			]

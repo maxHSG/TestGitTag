@@ -2,6 +2,10 @@
 	"name": "max/test-git",
 	"version": "v1.0.0",
 	"require": {},
+	"scripts": {
+		"post-install-cmd": "cghooks add --ignore-lock",
+		"post-update-cmd": "cghooks update"
+	},
 	"extra": {
 		"hooks": {
 			"pre-commit": [

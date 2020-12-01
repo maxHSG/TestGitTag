@@ -1,4 +1,4 @@
 <?php
 
 
-mkdir("./teste");
+echo "teste2";

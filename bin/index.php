@@ -12,7 +12,7 @@ if ($branch_name === "master") {
         
         $composer_json->version = $tag;
         
-        file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES));
+        file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
         exec("git add composer.json");
     } catch (\Throwable $th) {

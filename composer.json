@@ -10,6 +10,7 @@
 		}
 	},
 	"require-dev": {
-		"brainmaestro/composer-git-hooks": "^2.8"
+		"brainmaestro/composer-git-hooks": "^2.8",
+		"captainhook/captainhook": "^5.4"
 	}
 }

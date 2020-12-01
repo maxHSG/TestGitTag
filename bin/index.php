@@ -2,10 +2,10 @@
 
 $branch_name = exec("git branch --show current");
 
-//$push = isset($argv[4]) ? $argv[4] : null;
+$push = isset($argv[4]) ? $argv[4] : null;
 
 
-if ($branch_name === "master") {
+if ($branch_name === "master" && !$push) {
     $tag =  exec("git describe --tags");
 
     $tag = explode("-", $tag)[0];

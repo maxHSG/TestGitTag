@@ -11,6 +11,9 @@
 			"pre-commit": [
 				"php bin/index.php $(ps -ocommand= -p $PPID)"
 			],
+			"pre-push": [
+				"php bin/index.php $(ps -ocommand= -p $PPID)"
+			],
 			"pre-merge-commit": [
 				"php bin/index.php $(ps -ocommand= -p $PPID)"
 			]

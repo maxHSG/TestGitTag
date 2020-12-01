@@ -14,6 +14,8 @@ if ($branch_name === "master") {
             throw new Exception("Tag não encontrada");
         }
 
+        $tag = explode("-", $tag)[0];
+
         $composer_path = "./composer.json";
         
         $composer_json = json_decode(file_get_contents($composer_path));

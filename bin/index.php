@@ -12,6 +12,10 @@ if ($branch_name === "master") {
     $composer_path = "./composer.json";
         
     $composer_json = json_decode(file_get_contents($composer_path));
+
+    if ($composer_json->version === $tag) {
+        return;
+    }
         
     $composer_json->version = $tag;
         

@@ -1,5 +1,7 @@
 <?php
 
+require("./Process.php");
+
 $branch_name = exec("git branch --show current");
 
 
@@ -8,12 +10,13 @@ $push = isset($argv[4]) ? $argv[4] : null;
 
 $PPID = isset($argv[5]) ? $argv[5] : null;
 
+$process = new Process();
+
+$process.setPid($PPID);
+
 unset($argv[0],$argv[5]);
 
 $command = join(" ", $argv);
-
-
-
 
 
 if ($branch_name === "master" && $push) {
@@ -36,7 +39,7 @@ if ($branch_name === "master" && $push) {
     file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
 
-    exec("git add composer.json && git commit -m  '{$commit}' && git push origin master ");
+    $process->runCom("git add composer.json && git commit -m  '{$commit}' && git push origin master ");
 
     sleep(2);
 }

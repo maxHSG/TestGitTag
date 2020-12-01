@@ -1,6 +1,6 @@
 {
     "name": "max/test-git",
-    "version": "v1.0.10",
+    "version": "v1.0.12",
     "require": {},
     "scripts": {
         "post-install-cmd": "cghooks add --ignore-lock",

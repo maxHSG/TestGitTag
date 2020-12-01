@@ -36,7 +36,7 @@ if ($branch_name === "master" && $push) {
         
     file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
-    $process = new Process("git add composer.json && git commit -m  '{$commit}' && git push origin master ");
+    $process = new Process("git add composer.json && git commit -m  '{$commit}' ");
 
     $process->setPid($PPID);
 

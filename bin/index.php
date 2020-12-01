@@ -2,10 +2,10 @@
 
 $branch_name = exec("git branch --show current");
 
-$push = isset($argv[4]) ? $argv[4] : null;
+//$push = isset($argv[4]) ? $argv[4] : null;
 
 
-if ($branch_name === "master" && $push) {
+if ($branch_name === "master") {
     $tag =  exec("git describe --tags");
 
     $tag = explode("-", $tag)[0];
@@ -26,5 +26,5 @@ if ($branch_name === "master" && $push) {
 
     exec("git add composer.json");
     exec("git commit -m  '{$commit}' ");
-    exec("git push origin master");
+    //exec("git push origin master");
 }

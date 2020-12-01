@@ -2,6 +2,9 @@
 
 $branch_name = exec("git branch --show current");
 
+
+
+
 if ($branch_name === "master") {
     $tag =  exec("git describe --tags");
 

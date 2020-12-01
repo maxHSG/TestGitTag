@@ -2,6 +2,8 @@
 
 $branch_name = exec("git branch --show current");
 
+$last_commit = trim(exec("git reflog -1 | sed 's/^.*: //'"));
+
 if ($branch_name === "master") {
     try {
         $tag =  exec("git describe --tags");
@@ -16,8 +18,11 @@ if ($branch_name === "master") {
 
         $tag = explode("-", $tag)[0];
 
+        $commit = "Update to version {$tag}";
 
-        
+        if ($commit === $last_commit) {
+            return;
+        }
 
         $composer_path = "./composer.json";
         
@@ -30,7 +35,7 @@ if ($branch_name === "master") {
 
 
         exec("git add composer.json");
-        exec("git commit -m 'Update to version {$tag}' ");
+        exec("git commit -m  '{$commit}' ");
         exec("git push origin master");
     } catch (\Throwable $th) {
         echo "\n\n\n";

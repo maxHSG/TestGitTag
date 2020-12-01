@@ -1,4 +1,5 @@
 <?php
 
 
-echo "teste2";
+
+echo exec("git tag");

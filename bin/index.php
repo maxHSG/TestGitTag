@@ -1,7 +1,6 @@
 <?php
 
 $branch_name = exec("git branch --show current");
-
 $last_commit = trim(exec("git reflog -1 | sed 's/^.*: //'"));
 
 if ($branch_name === "master") {
@@ -32,11 +31,9 @@ if ($branch_name === "master") {
         
         file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
-
-
+       
         exec("git add composer.json");
         exec("git commit -m  '{$commit}' ");
-        exec("git push origin master");
     } catch (\Throwable $th) {
         echo "\n\n\n";
         

@@ -35,7 +35,10 @@ if ($branch_name === "master" && $push) {
         
     file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
+    print_r($commit);
+    exit;
+
     exec("git add composer.json && git commit -m  '{$commit}' && git push origin master ");
 
-    posix_kill($PPID, 1);
+    sleep(2);
 }

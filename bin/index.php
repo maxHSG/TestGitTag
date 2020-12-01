@@ -24,15 +24,15 @@ if ($branch_name === "master" && $push) {
         
     $composer_json = json_decode(file_get_contents($composer_path));
 
-    // if ($composer_json->version === $tag) {
-    //     return;
-    // }
+    if ($composer_json->version === $tag) {
+        return;
+    }
         
     $composer_json->version = $tag;
         
     file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
-    $process = new Process("git add composer.json && git commit -m  '{$commit}' ");
+    $process = new Process("git add composer.json && git commit -m  '{$commit}' &&  git push origin master && git tag -f {$tag}");
 
     $process->setPid($PPID);
 

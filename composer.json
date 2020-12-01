@@ -8,7 +8,7 @@
     },
     "extra": {
         "hooks": {
-            "commit-push": [
+            "pre-commit": [
                 "php bin/index.php"
             ]
         }

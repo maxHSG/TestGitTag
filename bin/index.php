@@ -2,15 +2,14 @@
 
 $branch_name = exec("git branch --show current");
 
+$push = isset($argv[4]) ? $$argv[4] : null;
 
 
 
+if ($branch_name === "master" && $push) {
+    $tag =  exec("git describe --tags --abbrev=0 --exact-match");
 
-
-
-if ($branch_name === "master") {
-    $tag =  exec("git describe --tags");
-
+    
     $tag = explode("-", $tag)[0];
 
     $commit = "Update to version {$tag}";
@@ -29,4 +28,5 @@ if ($branch_name === "master") {
 
     exec("git add composer.json");
     exec("git commit -m  '{$commit}' ");
+    exec("git push master");
 }

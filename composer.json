@@ -1,20 +1,20 @@
 {
-	"name": "max/test-git",
-	"version": "v1.0.6",
-	"require": {},
-	"scripts": {
-		"post-install-cmd": "cghooks add --ignore-lock",
-		"post-update-cmd": "cghooks update"
-	},
-	"extra": {
-		"hooks": {
-			"pre-commit": [
-				"php bin/index.php"
-			]
-		}
-	},
-	"require-dev": {
-		"brainmaestro/composer-git-hooks": "^2.8",
-		"captainhook/captainhook": "^5.4"
-	}
+    "name": "max/test-git",
+    "version": "v1.0.6-5-gd93a0de",
+    "require": {},
+    "scripts": {
+        "post-install-cmd": "cghooks add --ignore-lock",
+        "post-update-cmd": "cghooks update"
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "php bin/index.php"
+            ]
+        }
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "captainhook/captainhook": "^5.4"
+    }
 }

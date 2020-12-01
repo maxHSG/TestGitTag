@@ -4,7 +4,7 @@ $branch_name = exec("git branch --show current");
 
 if ($branch_name === "master") {
     try {
-        $tag =  exec("git describe --tags --abbrev=0 --exact-match");
+        $tag =  exec("git describe --tags");
 
         $matches = [];
 
@@ -22,7 +22,7 @@ if ($branch_name === "master") {
         
         file_put_contents($composer_path, json_encode($composer_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
-        
+
 
         exec("git add composer.json");
     } catch (\Throwable $th) {

@@ -16,5 +16,6 @@ if ($branch_name === "master") {
 
         exec("git add composer.json");
     } catch (\Throwable $th) {
+        echo "Crie uma tag antes de enviar para a master";
     }
 }

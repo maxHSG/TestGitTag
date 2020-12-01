@@ -30,6 +30,8 @@ if ($branch_name === "master") {
 
 
         exec("git add composer.json");
+        exec("git commit -m 'Update to version {$tag}' ");
+        exec("git push origin master");
     } catch (\Throwable $th) {
         echo "\n\n\n";
         

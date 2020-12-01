@@ -1,0 +1,15 @@
+{
+	"name": "max/test-git",
+	"version": "v1.0.0",
+	"require": {},
+	"extra": {
+		"hooks": {
+			"pre-commit": [
+				"php bin/index.php"
+			]
+		}
+	},
+	"require-dev": {
+		"brainmaestro/composer-git-hooks": "^2.8"
+	}
+}

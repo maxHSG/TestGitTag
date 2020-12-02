@@ -1,6 +1,6 @@
 <?php
 
-require("./bin/Process.php");
+require(__DIR__ . "/Process.php");
 
 $branch_name = exec("git branch --show current");
 

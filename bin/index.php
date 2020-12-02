@@ -12,10 +12,9 @@ unset($argv[0],$argv[5]);
 
 $command = join(" ", $argv);
 
+$tag =  exec("git describe --tags");
 
-if ($branch_name === "master" && $push) {
-    $tag =  exec("git describe --tags");
-
+if ($branch_name === "master" && $push === $tag) {
     $tag = explode("-", $tag)[0];
 
     $commit = "Update version to {$tag}";

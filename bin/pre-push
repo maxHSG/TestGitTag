@@ -3,10 +3,8 @@
 OS=`uname`
 
 
-
 while read local_ref local_oid remote_ref remote_oid
 do
-  
 
     # Verifica se o atual push é de uma tag
     if [[ $local_ref != *"refs/tags/"* ]]; then
@@ -25,7 +23,7 @@ do
 
     commit=$(echo "Update version to $tag");
 
-    composer_version=$(node -e "console.log(JSON.parse(require('fs').readFileSync('composer.json')).version)")
+    composer_version=$(grep \"version\" composer.json | cut -d ":" -f2- | sed 's/.$//' | sed 's/\"//g' | sed 's/ *$//g' | xargs)
 
     # echo "composer_version: $composer_version"
     # echo "tag: $tag"
@@ -38,10 +36,6 @@ do
 
     search=$(echo "\"version\": \"$composer_version\"")
     replace=$(echo "\"version\": \"$tag\"")
-
-
-
-    node -e "const composerJson = JSON.parse(require('fs').readFileSync('composer.json'));composerJson.version = '$tag';require('fs').writeFileSync('composer.json',JSON.stringify(composerJson,null,4));"
 
     filename="composer.json"
     

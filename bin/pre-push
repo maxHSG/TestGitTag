@@ -1,0 +1,64 @@
+#!/bin/sh
+
+OS=`uname`
+
+
+
+while read local_ref local_oid remote_ref remote_oid
+do
+  
+
+    # Verifica se o atual push é de uma tag
+    if [[ $local_ref != *"refs/tags/"* ]]; then
+        exit 0
+    fi
+    
+    push=$(echo "${local_ref//refs\/tags\/}")
+    
+    branch_name=$(git branch --show-current)
+
+    full_current_tag=$(git describe --tags)
+
+    exploded_tag=(${full_current_tag//-/ })
+
+    tag=${exploded_tag[0]}
+
+    commit=$(echo "Update version to $tag");
+
+    composer_version=$(node -e "console.log(JSON.parse(require('fs').readFileSync('composer.json')).version)")
+
+    # echo "composer_version: $composer_version"
+    # echo "tag: $tag"
+    # echo "branch_name: $branch_name"
+
+    # Verifica se a tag atual esta na master
+    if [[ $composer_version = $tag || $branch_name != "master" ]];then
+        exit 0
+    fi
+
+    search=$(echo "\"version\": \"$composer_version\"")
+    replace=$(echo "\"version\": \"$tag\"")
+
+
+
+    node -e "const composerJson = JSON.parse(require('fs').readFileSync('composer.json'));composerJson.version = '$tag';require('fs').writeFileSync('composer.json',JSON.stringify(composerJson,null,4));"
+
+    filename="composer.json"
+    
+    if [ "$OS" = 'Darwin' ]; then
+            # for MacOS
+            sed -i '' "s/$search/$replace/" $filename
+
+        else
+            # for Linux and Windows
+            sed -i'' "s/$search/$replace/" $filename
+    fi
+
+    echo "composer.json atualizado \n"
+    git add composer.json
+    git commit -m "$commit"
+    git push origin master
+    git tag -f "$tag"
+ 
+
+done
